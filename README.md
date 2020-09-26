@@ -49,9 +49,10 @@
 1. 进入项目根目录（main.py所在的目录）
 2. 创建docker image  
 `docker build -t verification_service .`
-3. 创建并在后台运行docker container
+3. 创建并在后台运行docker container  
 `docker run -d -p 8008:8008 verification_service`
-4. 在宿主机访问`localhost:8008/verifier`
+4. 在宿主机访问  
+`http://localhost:8008/verifier`
 
 ## 参考用例
 API使用方法见[示例代码](func_test.py)
