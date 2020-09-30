@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, make_response
+from flask_cors import CORS
 import hashlib
 from datetime import datetime
 import time
@@ -6,9 +7,10 @@ import random
 
 RAND_MIN = 12345678 #随机数下界
 RAND_MAX = 9876543210000000 #随机数上界
-MAX_TIME_DELTA = 3 #时间差最多3秒
+MAX_TIME_DELTA = 30 #时间差最多3秒
 
 app = Flask(__name__) 
+CORS(app, supports_credentials=True)
 
 def hash_encription(secret, timestamp, rand):
     '''
@@ -62,7 +64,7 @@ def encryptor():
     rand = get_rand()
     X = hash_encription(secret, ts, rand)
     return response({
-        'timestamp': ts,
+        'timestamp': str(ts),
         'random': rand,
         'encrpted': X}, 200)
 
