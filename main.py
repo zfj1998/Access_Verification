@@ -77,6 +77,8 @@ def verifier():
     data = request.form
     secret = data.get('secret', None)
     ts = eval(data.get('timestamp', None))
+    if type(ts) != float:
+        return response({'message': 'timestamp not a float number'}, 400)
     rand = data.get('random', None)
     X = data.get('encrpted', None)
     if None in [secret, ts, rand, X]:
